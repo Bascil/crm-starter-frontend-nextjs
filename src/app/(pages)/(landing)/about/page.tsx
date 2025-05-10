@@ -1,5 +1,5 @@
-import Navigation from "@/app/components/Navigation";
-import Footer from "@/app/components/Footer";
+import Navigation from "@/app/components/landing/Navbar";
+import Footer from "@/app/components/landing/Footer";
 
 export default function About() {
   return (
