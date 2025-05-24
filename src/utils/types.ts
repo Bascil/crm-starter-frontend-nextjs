@@ -34,6 +34,7 @@ export interface LoginCredentials {
 
 export interface Task {
   id: number;
+  name: string;
   description: string;
   dueDate?: string;
   projectId?: number;
