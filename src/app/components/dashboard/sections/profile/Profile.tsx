@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import { PhoneIcon, BriefcaseIcon } from "@heroicons/react/24/outline";
+import { useSelector } from "react-redux";
 
 let defaultInputClass =
   "border w-full border-gray-300 rounded-md font-light focus:ring-0 focus:border-indigo-500 ";
@@ -92,6 +94,8 @@ function SimpleCheckbox({ title, desc }: { title: string; desc: string }) {
 }
 
 function Forms() {
+  const { user } = useSelector((state: any) => state.auth) || {};
+
   return (
     <div className="grid lg:grid-cols-5 gap-4">
       <div className="order-2 lg:order-1 lg:col-span-3">
@@ -165,10 +169,10 @@ function Forms() {
                 alt=""
               />
 
-              <h4 className="text-lg font-medium mt-2">Mocha</h4>
+              <h4 className="text-lg font-medium mt-2">{user?.fullName}</h4>
               <div className="flex items-center text-gray-500">
                 <PhoneIcon className="w-4 h-4" />
-                <span className="text-sm ml-1">+9591234567</span>
+                <span className="text-sm ml-1">{user?.phoneNumber}</span>
               </div>
               <div className="flex items-center text-gray-500">
                 <BriefcaseIcon className="w-4 h-4" />

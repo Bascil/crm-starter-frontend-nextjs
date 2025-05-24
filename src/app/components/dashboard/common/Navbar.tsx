@@ -8,8 +8,19 @@ import { Fragment } from "react";
 import { ChevronDownIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { CogIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { logout } from "@/redux/slices/authSlice";
 
 function Navbar() {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const { user } = useSelector((state: any) => state.auth) || {};
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push("/login");
+  };
   const navBarHeight = 71;
 
   return (
@@ -49,7 +60,7 @@ function Navbar() {
               height={50}
               alt=""
             />
-            <span className="font-medium ml-3 mr-1">Super User</span>
+            <span className="font-medium ml-3 mr-1">{user?.fullName}</span>
             <ChevronDownIcon className="w-5 h-5" aria-hidden="true" />
           </Menu.Button>
         </div>
@@ -99,6 +110,7 @@ function Navbar() {
                     className={`${
                       active ? "bg-indigo-600 text-white" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                    onClick={handleLogout}
                   >
                     <ArrowLeftEndOnRectangleIcon
                       className="w-5 h-5 mr-2"
